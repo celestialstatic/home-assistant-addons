@@ -80,18 +80,10 @@ RUN apt-get -y purge build-essential libqpdf-dev \
 RUN cp docker/imagemagick-policy.xml /etc/ImageMagick-6/policy.xml
 RUN cp gunicorn.conf.py /usr/src/paperless
 RUN cp docker/supervisord.conf /etc/supervisord.conf
-# RUN cp docker/docker-entrypoint.sh /sbin/docker-entrypoint.sh
 COPY scripts/docker-entrypoint.sh /sbin/docker-entrypoint.sh
 
-
-WORKDIR /usr/src/paperless
-
-
-
-
-
-WORKDIR /usr/src/paperless
 # add users, setup scripts
+WORKDIR /usr/src/paperless
 RUN addgroup --gid 1000 paperless \
     && useradd --uid 1000 --gid paperless --home-dir /usr/src/paperless paperless \
     && chown -R paperless:paperless . \
@@ -118,4 +110,4 @@ EXPOSE 8000
 
 CMD ["/usr/local/bin/supervisord", "-c", "/etc/supervisord.conf"]
 
-LABEL maintainer="Moshe <34072688+TheBestMoshe@users.noreply.github.com>"
+LABEL maintainer="Celestial Static Games <contact@celestial-static-games.de>"

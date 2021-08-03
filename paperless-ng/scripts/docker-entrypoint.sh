@@ -78,7 +78,6 @@ wait_for_postgres() {
 
 
 migrations() {
-
 	if [[ -n "${PAPERLESS_DBHOST}" ]]
 	then
 		wait_for_postgres
@@ -91,7 +90,6 @@ migrations() {
 		flock 200
 		sudo -HEu paperless python3 manage.py migrate
 	)  200>/usr/src/paperless/data/migration_lock
-
 }
 
 initialize() {
